@@ -1,0 +1,26 @@
+[
+    {
+        "_id": 1,
+        "name": "Teeth Orthodontics",
+        "description": "gdhsbfdviuhh8regytgyuebndsjnpijihregydvbjbnvwegetvfghxjnvyvducbnifvdcbuvcuhsb.",
+        "price": 100,
+        "quantity": 100000,
+        "img": "https://cdna.pcpartpicker.com/static/forever/images/product/b309129ea091e6c768b8b7f984c8f616.256p.jpg"
+    },
+    {
+        "_id": 2,
+        "name": "Cosmetic Dentistry",
+        "description": "gdhsbfdviuhh8regytgyuebndsjnpijihregydvbjbnvwegetvfghxjnvyvducbnifvdcbuvcuhsb.",
+        "price": 100,
+        "quantity": 100000,
+        "img": "https://cdna.pcpartpicker.com/static/forever/images/product/b309129ea091e6c768b8b7f984c8f616.256p.jpg"
+    },
+    {
+        "_id": 3,
+        "name": "Teeth Cleaning",
+        "description": "gdhsbfdviuhh8regytgyuebndsjnpijihregydvbjbnvwegetvfghxjnvyvducbnifvdcbuvcuhsb.",
+        "price": 100,
+        "quantity": 100000,
+        "img": "https://cdna.pcpartpicker.com/static/forever/images/product/b309129ea091e6c768b8b7f984c8f616.256p.jpg"
+    }
+]
