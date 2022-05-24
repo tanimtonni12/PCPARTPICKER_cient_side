@@ -9,8 +9,8 @@ const Parts = () => {
             .then(data => setParts(data))
     }, [])
     return (
-        <div className="">
-            <div><h2 className='text-4xl font-bold my-10 text-center text-primary'>Our Products</h2></div>
+        <div className='max-w-7xl mx-auto px-12'>
+            <div><h2 className='text-5xl font-bold text-center text-primary uppercase my-20'>Our Products</h2></div>
 
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                 {
