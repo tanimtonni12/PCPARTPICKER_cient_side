@@ -5,6 +5,7 @@ import google from '../../images/google.png'
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 
 const SignUp = () => {
@@ -16,11 +17,11 @@ const SignUp = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     //update profile
     const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
-    // const [token] = useToken(user || gUser);
+    const [token] = useToken(user || gUser);
     const navigate = useNavigate();
     let signInError;
 
@@ -33,8 +34,8 @@ const SignUp = () => {
     if (error || gError || UpdateError) {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message || UpdateError?.message}</small></p>
     }
-    if (user || gUser) {
-        navigate('/appointment');
+    if (token) {
+        navigate('/purchase');
     }
 
 

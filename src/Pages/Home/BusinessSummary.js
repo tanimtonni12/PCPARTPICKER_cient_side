@@ -11,7 +11,7 @@ const BusinessSummary = () => {
             <div className='my-20'>
                 <h2 className='text-primary uppercase text-4xl font-bold'>an ultimate brand in market for 10 years </h2>
             </div>
-            <div className="stats shadow">
+            <div className="stats stats-vertical lg:stats-horizontal shadow">
 
                 <div className="stat">
                     <div className="stat-figure">
