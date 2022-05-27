@@ -18,7 +18,7 @@ const SingleOrder = ({ order, index }) => {
             <td>{phone}</td>
             <td>{order_quantity}</td>
             <td>{totalAmount}</td>
-            <td><button className="btn btn-xs"><Link to=''></Link>Manage</button></td>
+            <td><button className="btn btn-xs"><Link to=''></Link>Delete</button></td>
         </tr>
 
 

@@ -1,37 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
 
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-    const [clientSecret, setClientSecret] = useState('');
+    // const [clientSecret, setClientSecret] = useState('');
 
     const { _id, per_product_price, order_quantity, name, email } = order;
     const totalAmount = parseFloat(per_product_price) * parseFloat(order_quantity);
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify(totalAmount)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data?.clientSecret) {
-                    setClientSecret(data.clientSecret);
-                }
-            });
 
-    }, [totalAmount])
+
+    })
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -45,6 +34,21 @@ const CheckoutForm = ({ order }) => {
         if (card === null) {
             return;
         }
+        const res = await fetch('http://localhost:5000/create-payment-intent', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({ totalAmount })
+        })
+            .then(res => res.json())
+        // .then(data => {
+        //     // if (data?.clientSecret) {
+        //     //     setClientSecret(data.clientSecret);
+        //     // }
+        // });
+        const clientSecret = res.clientSecret;
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
@@ -78,12 +82,13 @@ const CheckoutForm = ({ order }) => {
             console.log(paymentIntent);
             setSuccess('Congrats! Your payment is completed.')
 
-            //store payment on database
+
+            // store payment on database
             const payment = {
-                appointment: _id,
+                order: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000//order/${_id}`, {
+            fetch(`http://localhost:5000/myorder/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -94,9 +99,11 @@ const CheckoutForm = ({ order }) => {
                 .then(data => {
                     setProcessing(false);
                     console.log(data);
+                    navigate('/dashboard/myOrders');
                 })
 
         }
+
     }
     return (
         <>
@@ -117,7 +124,7 @@ const CheckoutForm = ({ order }) => {
                         },
                     }}
                 />
-                <button className='btn btn-xs mt-4' type="submit" disabled={!stripe || !clientSecret || success}>
+                <button className='btn btn-xs mt-4' type="submit" disabled={!stripe || success}>
                     Pay
                 </button>
             </form>
