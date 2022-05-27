@@ -46,7 +46,7 @@ const Login = () => {
 
     //react form handle
     const onSubmit = data => {
-        console.log(data);
+
         signInWithEmailAndPassword(data.email, data.password);
     };
     return (
@@ -112,7 +112,7 @@ const Login = () => {
                         {signInError}
                         <input className='btn  w-full max-w-xs  text-white' type="submit" value='Login' />
                     </form>
-                    <p><small>New to Doctors Portal? <Link className='text-primary' to='/signup'>Create New Account</Link></small></p>
+                    <p><small>New to PC<span className='text-primary'>PART</span>PICKER? <Link className='text-primary' to='/signup'>Create New Account</Link></small></p>
 
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()} className="btn btn-outline flex items-center justify-center"><img src={google} alt="" /> Continue With Google</button>

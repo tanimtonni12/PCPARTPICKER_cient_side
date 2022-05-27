@@ -18,7 +18,7 @@ const Dashboard = () => {
 
             </div>
             <div className="drawer-side">
-                <label for="dashboard-sidebar" className="drawer-overlay"></label>
+                <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                     {/* <!-- Sidebar content here --> */}
                     <li><Link to='/dashboard'>My Profile</Link></li>
@@ -27,19 +27,22 @@ const Dashboard = () => {
 
                     {!admin && <> <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
                         <li><Link to='/dashboard/addReview'>Add a Review</Link></li>
+
                     </>}
 
                     {admin && <>
-                        <li><Link to='/dashboard/users'>All users</Link></li>
-                        <li><Link to='/dashboard/manage'>Manage Orders</Link></li>
-                        <li><Link to='/dashboard/allOrder'>All Orders</Link></li>
+                        <li><Link to='/dashboard/makeadmin'>Make Admin</Link></li>
+                        <li><Link to='/dashboard/allOrder'>Manage All Orders</Link></li>
+                        <li><Link to='/dashboard/manageproduct'>Manage Products</Link></li>
+                        <li><Link to='/dashboard/addproduct'>Add a Product</Link></li>
+
                     </>}
 
 
                 </ul>
 
             </div>
-        </div>
+        </div >
     );
 };
 

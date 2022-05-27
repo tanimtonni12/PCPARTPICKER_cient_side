@@ -5,7 +5,7 @@ import Loading from '../Shared/Loading';
 import UserRow from './UserRow';
 
 
-const Users = () => {
+const MakeAdmin = () => {
     const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
         method: 'GET',
         headers: {
@@ -18,8 +18,8 @@ const Users = () => {
     return (
         <div>
             <h2 className="text-2xl">All Users: {users.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -44,4 +44,4 @@ const Users = () => {
     );
 };
 
-export default Users;
+export default MakeAdmin;

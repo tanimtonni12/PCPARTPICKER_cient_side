@@ -9,13 +9,15 @@ import logo from '../../images/pcpp-logo.svg'
 
 
 const Navbar = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
         localStorage.removeItem('accessToken');
     };
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/blogs'>Blogs</Link></li>
+        <li><Link to='/portfolio'>Portfolio</Link></li>
         {user && <li><Link to='/dashboard'>Dashboard</Link></li>}
         <li>{user ? <button onClick={logout} className="btn btn-active btn-ghost">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
 
@@ -31,7 +33,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl"><img src={logo} alt="" /></a>
+                <Link to='/' className="btn btn-ghost normal-case text-xl"><img src={logo} alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu text-white menu-horizontal p-0 ">
