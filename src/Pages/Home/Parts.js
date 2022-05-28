@@ -7,7 +7,7 @@ const Parts = () => {
     useEffect(() => {
         fetch('https://morning-everglades-64553.herokuapp.com/tools')
             .then(res => res.json())
-            .then(data => setParts(data))
+            .then(data => setParts(data.slice(-6)))
     }, [])
 
     return (

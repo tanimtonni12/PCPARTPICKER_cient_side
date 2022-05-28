@@ -18,7 +18,7 @@ const SingleOrder = ({ order, index, refetch, setDeletingOrder }) => {
             <td>{order_quantity}</td>
             <td>{totalAmount}</td>
             <td>
-                {(per_product_price && !order.paid) && < button onClick={() => setDeletingOrder(order)} className="btn btn-xs btn-error"><label htmlFor="order-delete-confirm-modal">Delete</label></button>}
+                {(per_product_price && !order.paid) && < button onClick={() => setDeletingOrder(order)} className="btn btn-xs btn-error"><label htmlFor="all-order-delete-confirm-modal">Delete</label></button>}
             </td>
         </tr>
 

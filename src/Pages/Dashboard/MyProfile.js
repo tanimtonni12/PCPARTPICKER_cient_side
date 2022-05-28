@@ -25,7 +25,7 @@ const MyProfile = () => {
     }).then(res => res.json()));
 
 
-    console.log(data)
+
     const onSubmit = data => {
         const users = {
             linkin: data.linkin,
@@ -57,8 +57,8 @@ const MyProfile = () => {
         <div>
             <div className="my-10">
                 <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ">
-                    <div class="avatar">
-                        <div class="w-64 mr-5 rounded">
+                    <div className="avatar">
+                        <div className="w-64 mr-5 rounded">
                             <img src={user?.photoURL} alt='' />
                         </div>
                     </div>
