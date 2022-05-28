@@ -4,16 +4,18 @@ import auth from '../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
+    console.log(user)
     return (
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row">
-                <img src={user.img} className="max-w-sm rounded-lg shadow-2xl" alt='' />
+        <div className="hero  bg-base-200">
+            <div className="flex  items-center">
+                <img src={user.photoURL} className="max-w-sm mr-10 rounded-lg shadow-2xl" alt='' />
                 <div>
-                    <h1 className="text-5xl font-bold">{user.displayName}</h1>
-                    <h1 className="text-5xl font-bold">{user.email}</h1>
-                    <p className="py-6">{user.address}</p>
-                    <button className="btn btn-primary">Update Profile</button>
+                    <h1 className="text-2xl font-bold mb-4">{user.displayName}</h1>
+                    <h1 className="text-2xl font-bold">{user.email}</h1>
+
+
                 </div>
+
             </div>
         </div>
     );
