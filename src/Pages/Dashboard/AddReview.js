@@ -37,7 +37,7 @@ const AddReview = () => {
             ratings: data.ratings,
             review: data.review
         }
-        fetch("http://localhost:5000/addReview", {
+        fetch("https://morning-everglades-64553.herokuapp.com/addReview", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(reviews),

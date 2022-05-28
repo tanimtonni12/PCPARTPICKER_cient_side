@@ -34,7 +34,7 @@ const CheckoutForm = ({ order }) => {
         if (card === null) {
             return;
         }
-        const res = await fetch('http://localhost:5000/create-payment-intent', {
+        const res = await fetch('https://morning-everglades-64553.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -88,7 +88,7 @@ const CheckoutForm = ({ order }) => {
                 order: _id,
                 transactionId: paymentIntent.id
             }
-            fetch(`http://localhost:5000/myorder/${_id}`, {
+            fetch(`https://morning-everglades-64553.herokuapp.com/myorder/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

@@ -9,6 +9,7 @@ import auth from '../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
+    console.log(user)
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
 
@@ -17,7 +18,7 @@ const MyProfile = () => {
 
 
 
-    const { data, isLoading, refetch } = useQuery("repoData", () => fetch(`http://localhost:5000/user/one?email=${user.email}`, {
+    const { data, isLoading, refetch } = useQuery("repoData", () => fetch(`https://morning-everglades-64553.herokuapp.com/user/one?email=${user.email}`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -33,7 +34,7 @@ const MyProfile = () => {
             profession: data.profession
         }
         if (user.email) {
-            fetch(`http://localhost:5000/user/${user.email}`, {
+            fetch(`https://morning-everglades-64553.herokuapp.com/user/${user.email}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
@@ -58,12 +59,12 @@ const MyProfile = () => {
                 <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ">
                     <div class="avatar">
                         <div class="w-64 mr-5 rounded">
-                            <img src={user.photoURL} alt='' />
+                            <img src={user?.photoURL} alt='' />
                         </div>
                     </div>
                     <div>
-                        <h1 className="text-xl font-bold">Name: {user.displayName}</h1>
-                        <h1 className="text-xl font-bold">Email: {user.email}</h1>
+                        <h1 className="text-xl font-bold">Name: {user?.displayName}</h1>
+                        <h1 className="text-xl font-bold">Email: {user?.email}</h1>
                         <h1 className="text-xl font-bold">Address: {data?.Address}</h1>
                         <h1 className="text-xl font-bold">Number: {data?.phone}</h1>
                         <h1 className="text-xl font-bold">Profession: {data?.profession}</h1>

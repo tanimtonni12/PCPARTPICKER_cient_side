@@ -5,7 +5,7 @@ import Ratings from './Ratings';
 const ViewReviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://morning-everglades-64553.herokuapp.com/reviews')
             .then(req => req.json())
             .then(data => setReviews(data.slice(-6)));
     }, [])

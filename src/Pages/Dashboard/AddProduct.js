@@ -7,7 +7,7 @@ import Loading from '../Shared/Loading';
 const AddProduct = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
-    const { data: tools, isLoading } = useQuery('tools', () => fetch('http://localhost:5000/tools').then(res => res.json()))
+    const { data: tools, isLoading } = useQuery('tools', () => fetch('https://morning-everglades-64553.herokuapp.com/tools').then(res => res.json()))
 
     const imageStorageKey = '18d84f48349799c1763e96d2ba6cf644';
     const onSubmit = async data => {
@@ -32,7 +32,7 @@ const AddProduct = () => {
                         img: img
                     }
                     // send to your database 
-                    fetch('http://localhost:5000/tools', {
+                    fetch('https://morning-everglades-64553.herokuapp.com/tools', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

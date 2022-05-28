@@ -5,7 +5,7 @@ import Part from './Part';
 const Parts = () => {
     const [parts, setParts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/tools')
+        fetch('https://morning-everglades-64553.herokuapp.com/tools')
             .then(res => res.json())
             .then(data => setParts(data))
     }, [])

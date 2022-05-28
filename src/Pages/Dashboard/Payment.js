@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L43myCZVrcgDcnfYfDV0Gr9e5jOVc6DDDdDT
 const Payment = () => {
     const { id } = useParams();
 
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://morning-everglades-64553.herokuapp.com/order/${id}`;
     const { data: order, isLoading } = useQuery(['orders', id], () => fetch(url, {
         method: 'GET',
         headers: {

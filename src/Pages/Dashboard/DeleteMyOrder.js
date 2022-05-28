@@ -6,7 +6,7 @@ const DeleteMyOrder = ({ deletingOrder, refetch, setDeletingOrder }) => {
     console.log(_id)
     const handleDelete = () => {
         console.log('deleted')
-        fetch(`http://localhost:5000/myorder/${_id}`, {
+        fetch(`https://morning-everglades-64553.herokuapp.com/myorder/${_id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

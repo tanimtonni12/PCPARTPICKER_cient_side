@@ -14,7 +14,7 @@ const Purchase = () => {
     const [part, setPart] = useState({});
     const { _id, img, name, description, price, p_quantity, min_quantity } = part;
     useEffect(() => {
-        fetch(`http://localhost:5000/tools/${id}`, {
+        fetch(`https://morning-everglades-64553.herokuapp.com/tools/${id}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -36,7 +36,7 @@ const Purchase = () => {
             order_quantity: data.quantity
 
         }
-        fetch('http://localhost:5000/order', {
+        fetch('https://morning-everglades-64553.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
