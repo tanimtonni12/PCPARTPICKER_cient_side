@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { toast } from 'react-toastify';
+
 
 import useAdmin from '../../hooks/useAdmin';
 import Loading from '../Shared/Loading';
 import MyOrder from './MyOrder';
+import { useQuery } from 'react-query';
+import DeleteMyOrder from './DeleteMyOrder';
 
 const MyOrders = () => {
-    const [orders, setOrders] = useState([]);
+
+    const [deletingOrder, setDeletingOrder] = useState(null);
     const [user] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
     const navigate = useNavigate();
@@ -18,49 +21,61 @@ const MyOrders = () => {
         if (admin) {
             navigate('/dashboard')
         }
+    }, [admin, navigate])
 
-        if (user) {
-            fetch(`http://localhost:5000/myorder?email=${user.email}`)
-                .then(res => res.json())
-                .then(data => setOrders(data));
+
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/myorder?email=${user.email}`, {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
-
-    }, [user, admin, navigate])
+    }).then(res => res.json()));
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     if (adminLoading) {
         return <Loading></Loading>
     }
-
+    console.log(deletingOrder)
 
     return (
-        <div className="overflow-x-auto">
-            <table className="table w-full">
+        <div>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
 
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Product Name</th>
-                        <th>Per Product Price</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
-                        <th>Order Quantity</th>
-                        <th>Total Amount</th>
-                        <th>Payment</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Product Name</th>
+                            <th>Per Product Price</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Order Quantity</th>
+                            <th>Total Amount</th>
+                            <th>Payment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    {
-                        orders.map((order, index) => <MyOrder key={order._id}
-                            index={index}
-                            order={order}
-                        ></MyOrder>
-                        )
-                    }
+                        {
+                            orders.map((order, index) => <MyOrder key={order._id}
+                                order={order}
+                                index={index}
+                                refetch={refetch}
+                                setDeletingOrder={setDeletingOrder}
+                            ></MyOrder>
+                            )
+                        }
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            {deletingOrder && <DeleteMyOrder
+                deletingOrder={deletingOrder}
+                refetch={refetch}
+                setDeletingOrder={setDeletingOrder}
+            ></DeleteMyOrder>}
         </div >
     );
 };

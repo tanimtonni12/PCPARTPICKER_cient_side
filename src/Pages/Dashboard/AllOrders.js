@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+
+import { useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
+import DeleteAllOrder from './DeleteAllOrder';
 import SingleOrder from './SingleOrder';
 
 const AllOrders = () => {
-    const [orders, setOrders] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/order', {
-            method: 'GET',
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
+    const [deletingOrder, setDeletingOrder] = useState(null);
 
-            .then(res => res.json())
-            .then(data => setOrders(data))
-    }, [])
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch('http://localhost:5000/order', {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div>
@@ -35,15 +38,22 @@ const AllOrders = () => {
                     <tbody>
                         {
 
-                            orders.map((order, index) => <SingleOrder key={order._id}
+                            orders.map((order, index) => <SingleOrder key={order._key}
                                 order={order}
-                                index={index}></SingleOrder>
+                                index={index}
+                                refetch={refetch}
+                                setDeletingOrder={setDeletingOrder}></SingleOrder>
 
                             )
                         }
                     </tbody>
                 </table>
             </div>
+            {deletingOrder && <DeleteAllOrder
+                deletingOrder={deletingOrder}
+                refetch={refetch}
+                setDeletingDoctor={setDeletingOrder}
+            ></DeleteAllOrder>}
         </div>
     );
 };

@@ -14,7 +14,7 @@ const Skill = () => {
 
     return (
         <div>
-            <h1 className='text-4xl text-center text-primary font-bold my-10'>SKILSL</h1>
+            <h1 className='text-4xl text-center text-primary font-bold my-10'>SKILLS</h1>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
 
                 <div className="card lg:max-w-lg bg-base-100 shadow-xl p-6 cardBorder2">

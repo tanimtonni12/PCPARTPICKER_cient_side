@@ -7,7 +7,7 @@ const Parts = () => {
     useEffect(() => {
         fetch('http://localhost:5000/tools')
             .then(res => res.json())
-            .then(data => setParts(data.slice(-6)))
+            .then(data => setParts(data))
     }, [])
 
     return (

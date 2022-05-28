@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
 
-
-const SingleOrder = ({ order, index }) => {
+const SingleOrder = ({ order, index, refetch, setDeletingOrder }) => {
 
     const { productName, per_product_price, address, phone, order_quantity } = order;
     const totalAmount = parseFloat(order_quantity) * parseFloat(per_product_price);
+
     return (
 
         <tr>
@@ -18,7 +17,9 @@ const SingleOrder = ({ order, index }) => {
             <td>{phone}</td>
             <td>{order_quantity}</td>
             <td>{totalAmount}</td>
-            <td><button className="btn btn-xs"><Link to=''></Link>Delete</button></td>
+            <td>
+                {(per_product_price && !order.paid) && < button onClick={() => setDeletingOrder(order)} className="btn btn-xs btn-error"><label htmlFor="delete-confirm-modal">Delete</label></button>}
+            </td>
         </tr>
 
 

@@ -1,27 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-const MyOrder = ({ order, index }) => {
+
+const MyOrder = ({ order, index, refetch, setDeletingOrder }) => {
     const { productName, per_product_price, order_quantity, _id, address, phone } = order;
-    const handleDelete = () => {
-        const proceed = window.confirm('are you sure that you want to delete this item?');
-        if (proceed) {
-            fetch(`http://localhost:5000/myorder/${_id}`, {
-                method: 'DELETE',
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.result.deletedCount) {
-                        toast("successfully deleted")
-                    }
-                })
-        }
-    }
+
     return (
         <tr>
             <th>{index + 1}</th>
@@ -38,7 +21,9 @@ const MyOrder = ({ order, index }) => {
                 </div>}
             </td>
             <td>
-                {(per_product_price && !order.paid) && < button onClick={() => handleDelete()} className="btn btn-xs btn-error">Delete</button>}
+
+                {(per_product_price && !order.paid) && < button onClick={() => setDeletingOrder(order)} className="btn btn-xs btn-error">    <label htmlFor="order-delete-confirm-modal">Delete </label></button>}
+
             </td>
         </tr >
     );
