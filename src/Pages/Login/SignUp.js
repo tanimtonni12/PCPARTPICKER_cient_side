@@ -4,7 +4,7 @@ import auth from '../../firebase.init'
 import google from '../../images/google.png'
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 
 
@@ -18,6 +18,8 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
     //update profile
     const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
@@ -35,7 +37,7 @@ const SignUp = () => {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message || UpdateError?.message}</small></p>
     }
     if (token) {
-        navigate('/purchase');
+        navigate(from, { replace: true });
     }
 
 
