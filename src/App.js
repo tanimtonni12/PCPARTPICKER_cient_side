@@ -29,6 +29,8 @@ import Payment from './Pages/Dashboard/Payment';
 
 
 
+
+
 function App() {
   return (
     <div>
@@ -37,8 +39,9 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='login' element={<Login></Login>}></Route>
         <Route path='signup' element={<SignUp></SignUp>}></Route>
+
         <Route path='blogs' element={<Blogs></Blogs>}></Route>
-        <Route path='portfolio' element={<Protfolio></Protfolio>}></Route>
+        <Route path='portfolio/' element={<Protfolio></Protfolio>}></Route>
         <Route path='purchase/:id' element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
         <Route path='dashboard' element={
           <RequireAuth>
@@ -47,6 +50,7 @@ function App() {
 
         }>
           <Route index element={<MyProfile></MyProfile>}></Route>
+
           <Route path='makeadmin' element={<RequireAdmin><MakeAdmin></MakeAdmin></RequireAdmin>}></Route>
           <Route path='addReview' element={<AddReview></AddReview>}></Route>
           <Route path='payment/:id' element={<Payment></Payment>}></Route>
