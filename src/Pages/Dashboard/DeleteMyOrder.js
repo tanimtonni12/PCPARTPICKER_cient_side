@@ -31,7 +31,7 @@ const DeleteMyOrder = ({ deletingOrder, refetch, setDeletingOrder }) => {
                     <p className="py-4">If you want to delete then click delete button!</p>
                     <div className="modal-action">
                         <button onClick={() => handleDelete()} className="btn btn-xs btn-error">Delete</button>
-                        <label for="delete-confirm-modal" class="btn btn-xs">Cancel</label>
+                        <label for="order-delete-confirm-modal" class="btn btn-xs">Cancel</label>
                     </div>
                 </div>
             </div>

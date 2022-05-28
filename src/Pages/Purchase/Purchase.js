@@ -70,7 +70,7 @@ const Purchase = () => {
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{name}</h2>
                         <p>{description}</p>
-                        <p>Price: {price}</p>
+                        <p>Per_Price: ${price}</p>
                         <p>Quantity: {p_quantity}</p>
                         <p>Minimum-Order: {min_quantity}</p>
 
