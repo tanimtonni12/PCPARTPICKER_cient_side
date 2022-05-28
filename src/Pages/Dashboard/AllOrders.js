@@ -52,7 +52,7 @@ const AllOrders = () => {
             {deletingOrder && <DeleteAllOrder
                 deletingOrder={deletingOrder}
                 refetch={refetch}
-                setDeletingDoctor={setDeletingOrder}
+                setDeletingOrder={setDeletingOrder}
             ></DeleteAllOrder>}
         </div>
     );

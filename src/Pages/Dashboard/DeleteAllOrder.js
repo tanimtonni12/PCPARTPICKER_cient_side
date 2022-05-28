@@ -22,14 +22,14 @@ const DeleteAllOrder = ({ deletingOrder, refetch, setDeletingOrder }) => {
     }
     return (
         <div>
-            <input type="checkbox" id="delete-confirm-modal" class="modal-toggle" />
+            <input type="checkbox" id="order-delete-confirm-modal" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
                     <h3 class="font-bold text-lg text-red-500">Are you sure you want to delete  this order?</h3>
                     <p class="py-4">If you are sure then click on delete button</p>
                     <div class="modal-action">
                         <button onClick={() => handleDelete()} class="btn btn-xs btn-error">Delete</button>
-                        <label HtmlFor="delete-confirm-modal" class="btn btn-xs">Cancel</label>
+                        <label HtmlFor="order-delete-confirm-modal" class="btn btn-xs">Cancel</label>
                     </div>
                 </div>
             </div>

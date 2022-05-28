@@ -11,9 +11,9 @@ const Ourtools = () => {
     return (
         <div>
             <div><h2 className='text-center text-primary text-4xl font-bold my-10'>The Products We Manufacture</h2></div>
-            <div className='container mx-auto'>
-                <div class=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 rounded-box">
-                    <div class="card w-64  bg-neutral shadow-xl">
+            <div className='flex items-center justify-center'>
+                <div class=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 rounded-box">
+                    <div class="card w-64   bg-neutral shadow-xl">
                         <figure class="px-10 pt-10">
                             <img src={motherboard} alt="" class="rounded-xl" />
                         </figure>
