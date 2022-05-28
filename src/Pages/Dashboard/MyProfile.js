@@ -1,50 +1,54 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const [users, setUsers] = useState([]);
-    const [viewForm, setViewForm] = useState(false);
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch('http://localhost:5000/user')
-            .then(res => res.json())
-            .then(data => setUsers(data))
-    }, []);
+
+    const [viewForm, setViewForm] = useState(false);
+
+
+
+
+    const { isLoading, data, refetch } = useQuery("repoData", () => fetch(`http://localhost:5000/user/one?email=${user.email}`, {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
+
+
     console.log(user)
     const onSubmit = data => {
         const users = {
             linkin: data.linkin,
             Address: data.address,
             phone: data.phone,
-            education: data.profession
+            profession: data.profession
         }
-        fetch(`http://localhost:5000/user/${user.email}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(users)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.result.success) {
-                    toast(`your profile is updated.`);
-                    navigate('/dashboard');
+        if (user.email) {
+            fetch(`http://localhost:5000/user/${user.email}`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(users),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    toast.success("update Your Profile Information");
+                    console.log(data)
 
+                });
+        }
+        reset();
 
-                }
-
-                reset();
-
-
-            });
     }
 
 
@@ -60,7 +64,9 @@ const MyProfile = () => {
                     <div>
                         <h1 className="text-2xl font-bold mb-4">{user.displayName}</h1>
                         <h1 className="text-2xl font-bold">{user.email}</h1>
-                        <h1 className="text-2xl font-bold">{user.linkin}</h1>
+
+
+
 
 
 
@@ -79,7 +85,7 @@ const MyProfile = () => {
 
                         </label>
                         <input
-                            type="text" placeholder="Your Address"
+                            type="text" required placeholder="Your Address"
                             className="input input-bordered w-full max-w-xs"
                             {...register("address")} />
 
@@ -90,7 +96,7 @@ const MyProfile = () => {
 
                         </label>
                         <input
-                            type="text" placeholder="Your Phone Number"
+                            type="text" required placeholder="Your Phone Number"
                             className="input input-bordered w-full max-w-xs"
                             {...register("phone")} />
 
@@ -101,7 +107,7 @@ const MyProfile = () => {
 
                         </label>
                         <input
-                            type="text" placeholder="Your Profession"
+                            type="text" required placeholder="Your Profession"
                             className="input input-bordered w-full max-w-xs"
                             {...register("profession")} />
 
@@ -112,7 +118,7 @@ const MyProfile = () => {
 
                         </label>
                         <input
-                            type="text" placeholder="Your LinkIn Profile Link"
+                            type="text" required placeholder="Your LinkIn Profile Link"
                             className="input input-bordered w-full max-w-xs"
                             {...register("linkin")} />
 
@@ -123,12 +129,13 @@ const MyProfile = () => {
                 </form>
             }
 
-        </div>
+        </div >
 
 
 
 
     );
+
 };
 
 export default MyProfile;
