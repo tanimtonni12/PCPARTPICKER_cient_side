@@ -57,13 +57,11 @@ const Purchase = () => {
 
             });
 
-
-
     };
 
 
     return (
-        <div className='flex lg:mt-10 justify-center items-center'>
+        <div className='flex lg:mt-10 justify-center items-center mb-10'>
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-20'>
                 <div className="card lg:max-w-lg bg-base-100 shadow-xl">
                     <figure className="px-10 pt-10">
@@ -76,13 +74,7 @@ const Purchase = () => {
                         <p>Quantity: {p_quantity}</p>
                         <p>Minimum-Order: {min_quantity}</p>
 
-                        <div >
-                            <form className='flex'>
-                                <input type="text" placeholder="Type here" className="input input-bordered input-xs w-full max-w-xs" />
-                                <button className='btn btn-secondary btn-xs ml-2'>Update</button>
-                            </form>
 
-                        </div>
                     </div>
                 </div >
                 <div>

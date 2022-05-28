@@ -10,6 +10,7 @@ const MyProfile = () => {
                 <img src={user.img} className="max-w-sm rounded-lg shadow-2xl" alt='' />
                 <div>
                     <h1 className="text-5xl font-bold">{user.displayName}</h1>
+                    <h1 className="text-5xl font-bold">{user.email}</h1>
                     <p className="py-6">{user.address}</p>
                     <button className="btn btn-primary">Update Profile</button>
                 </div>

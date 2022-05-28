@@ -43,6 +43,19 @@ const Protfolio = () => {
                 <Skill></Skill>
             </div>
 
+            <div className='text-center mb-5'>
+                <h2 className='font-bold text-primary text-4xl my-10'> Projects Link </h2>
+                <div className='flex items-center justify-center'>
+                    <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                        <button class="btn btn-wide"><a className='link link-hover' href="https://laptop-warehouse-managem-a1da6.web.app/">Laptop WareHouse Management </a></button>
+
+                        <button class="btn btn-wide"><a className='link link-hover' href="https://competent-easley-a20b1c.netlify.app/">Phone Hunter</a></button>
+
+                        <button class="btn btn-wide"><a className='link link-hover' href="https://photography-service-provider.web.app/">Photography Service Provider</a></button>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     );
