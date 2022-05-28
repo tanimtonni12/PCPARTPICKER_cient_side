@@ -17,14 +17,14 @@ const MyProfile = () => {
 
 
 
-    const { isLoading, data, refetch } = useQuery("repoData", () => fetch(`http://localhost:5000/user/one?email=${user.email}`, {
+    const { data, isLoading, refetch } = useQuery("repoData", () => fetch(`http://localhost:5000/user/one?email=${user.email}`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()));
 
 
-    console.log(user)
+    console.log(data)
     const onSubmit = data => {
         const users = {
             linkin: data.linkin,
@@ -55,15 +55,19 @@ const MyProfile = () => {
     return (
         <div>
             <div className="my-10">
-                <div className="flex  items-center">
+                <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 ">
                     <div class="avatar">
-                        <div class="w-24 rounded mr-5">
+                        <div class="w-64 mr-5 rounded">
                             <img src={user.photoURL} alt='' />
                         </div>
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold mb-4">{user.displayName}</h1>
-                        <h1 className="text-2xl font-bold">{user.email}</h1>
+                        <h1 className="text-xl font-bold">Name: {user.displayName}</h1>
+                        <h1 className="text-xl font-bold">Email: {user.email}</h1>
+                        <h1 className="text-xl font-bold">Address: {data?.Address}</h1>
+                        <h1 className="text-xl font-bold">Number: {data?.phone}</h1>
+                        <h1 className="text-xl font-bold">Profession: {data?.profession}</h1>
+                        <h1 className="text-xl font-bold">Linkedin: {data?.linkin}</h1>
 
 
 
